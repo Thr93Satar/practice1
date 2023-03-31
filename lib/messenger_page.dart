@@ -6,6 +6,9 @@ class Messenger_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text ('Messenger'),
+      ),
         body: Center(
           child: Column(
             children: [
