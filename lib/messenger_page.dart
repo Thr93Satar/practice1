@@ -1,30 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:practiceflutter/bottomActiveUsers.dart';
 import 'package:practiceflutter/topActiveUsers.dart';
 import 'package:practiceflutter/main.dart';
+import 'UsersModel.dart';
 
 class Messenger_page extends StatelessWidget {
   const Messenger_page({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    final List<Widget> bottomActiveUsersList = List.generate(
-        100,
-        (index) => const BottomActiveUsers(
-            recentMessage: 'recentMessage',
-            userName: "Kale Galahad",
-            innerCircleColor: Colors.white,
-            outerCircleColor: Colors.blue,
-            userImage:
-                'https://images.pexels.com/photos/16085452/pexels-photo-16085452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'));
-    final List<Widget> ActiveUsersList = List.generate(
-        10000,
-        (index) => const ActiveUsers(
-            userName: "Kale Galahad",
-            innerCircleColor: Colors.white,
-            outerCircleColor: Colors.blue,
-            userImage:
-                'https://images.pexels.com/photos/16085452/pexels-photo-16085452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'));
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -133,16 +118,8 @@ class Messenger_page extends StatelessWidget {
                     Flexible(
                       child: ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 100,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const BottomActiveUsers(
-                              recentMessage: 'recentkasjdsi LCNXMessage',
-                              userName: "Kale Galahad Aygar",
-                              innerCircleColor: Colors.white,
-                              outerCircleColor: Colors.blue,
-                              userImage:
-                              'https://images.pexels.com/photos/16085452/pexels-photo-16085452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-                        },
+                        itemCount: UsersModel.users.length,
+                        itemBuilder: (context, index) => buildUsersItem(UsersModel.users[index]),
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox(
                             height: 20.0,
