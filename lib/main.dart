@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practiceflutter/Counter_screen.dart';
 import 'package:practiceflutter/UsersScreen.dart';
 import 'package:practiceflutter/messenger_page.dart';
 
@@ -13,11 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: themecolor,
         fontFamily: 'cabin',
         scaffoldBackgroundColor: bodycolor,
       ),
-      home: Messenger_page(),
+      home: CounterScreen(),
     );
   }
 }
