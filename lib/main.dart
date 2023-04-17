@@ -3,6 +3,8 @@ import 'package:practiceflutter/Counter_screen.dart';
 import 'package:practiceflutter/UsersScreen.dart';
 import 'package:practiceflutter/messenger_page.dart';
 
+import 'bmi_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,10 +16,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: themecolor,
         fontFamily: 'cabin',
         scaffoldBackgroundColor: bodycolor,
       ),
-      home: CounterScreen(),
+      home: BMIScreen(),
     );
   }
 }
@@ -43,7 +46,7 @@ Map<int, Color> color = {
   800: const Color.fromRGBO(50, 61, 103, .9),
   900: const Color.fromRGBO(50, 61, 103, 1),
 };
-MaterialColor bodycolor = MaterialColor(0xFFffffff, color);
+MaterialColor bodycolor = MaterialColor(0xFF0f0f38, color);
 
 Map<int, Color> color1 = {
   50: const Color.fromRGBO(70, 90, 170, .1),
@@ -57,7 +60,7 @@ Map<int, Color> color1 = {
   800: const Color.fromRGBO(70, 90, 170, .9),
   900: const Color.fromRGBO(70, 90, 170, 1),
 };
-MaterialColor themecolor = MaterialColor(0xFFffffff, color1);
+MaterialColor themecolor = MaterialColor(0xFF303062, color1);
 
 Map<int, Color> color2 = {
   50: const Color.fromRGBO(5, 206, 230, .1),
