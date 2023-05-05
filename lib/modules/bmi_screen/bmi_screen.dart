@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:practiceflutter/modules/bmi_result/bmi_result.dart';
 
 class BMIScreen extends StatefulWidget {
   const BMIScreen({Key? key}) : super(key: key);
@@ -59,7 +60,8 @@ class _BMIScreenState extends State<BMIScreen> {
                         decoration: BoxDecoration(
                           color:
                               isMale ? Colors.white30 : const Color(0xff34305c),
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -141,9 +143,7 @@ class _BMIScreenState extends State<BMIScreen> {
                     const SizedBox(
                       height: 5,
                     ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text(
                         '${counter.round()}',
                         style: const TextStyle(
@@ -223,7 +223,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                       const Duration(milliseconds: 100), (t) {
                                     setState(() {
                                       if (weight != 0) {
-                                        weight -=10;
+                                        weight -= 10;
                                       }
                                     });
                                   });
@@ -238,7 +238,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                   onPressed: () {
                                     setState(() {
                                       if (weight != 0) {
-                                        weight -=10;
+                                        weight -= 10;
                                       }
                                     });
                                   },
@@ -272,7 +272,7 @@ class _BMIScreenState extends State<BMIScreen> {
                                 child: FloatingActionButton(
                                   onPressed: () {
                                     setState(() {
-                                      weight+=10;
+                                      weight += 10;
                                     });
                                   },
                                   child: const Icon(
@@ -399,7 +399,10 @@ class _BMIScreenState extends State<BMIScreen> {
             width: double.infinity,
             height: 50,
             child: MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BmiResult(counter: counter, isMale: isMale, age: age,)),
+                );
+              },
               color: Colors.red,
               child: const Text(
                 'Calculate',

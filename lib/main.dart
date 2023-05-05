@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:practiceflutter/Counter_screen.dart';
-import 'package:practiceflutter/UsersScreen.dart';
-import 'package:practiceflutter/messenger_page.dart';
+import 'package:practiceflutter/modules/counter_screen/Counter_screen.dart';
+import 'package:practiceflutter/modules/login_screen/login_screen.dart';
+import 'package:practiceflutter/modules/user_screen/UsersScreen.dart';
+import 'package:practiceflutter/modules/messenger_page/messenger_page.dart';
 
-import 'bmi_screen.dart';
+import 'modules/bmi_screen/bmi_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: themecolor,
-        fontFamily: 'cabin',
-        scaffoldBackgroundColor: bodycolor,
       ),
-      home: BMIScreen(),
+      home: LoginScreen(),
     );
   }
 }

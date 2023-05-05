@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practiceflutter/topActiveUsers.dart';
+import 'package:practiceflutter/modules/messenger_page/topActiveUsers.dart';
 import 'package:practiceflutter/main.dart';
-import 'UsersModel.dart';
+import '../user_model/UsersModel.dart';
 
 class Messenger_page extends StatelessWidget {
   const Messenger_page({Key? key}) : super(key: key);
