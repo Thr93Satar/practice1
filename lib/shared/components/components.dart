@@ -38,7 +38,9 @@ Widget mainButton({
         borderRadius: BorderRadius.circular(buttonRadius),
         color: buttonColor,
       ),
-      child: MaterialButton(child: btnText(text: buttonText), onPressed: () {}),
+      child: MaterialButton(
+          onPressed: buttonFunction(),
+          child: btnText(text: buttonText)),
     );
 
 // TextFields Section ------------------------------3
@@ -50,14 +52,14 @@ Widget textfield1({
   double tfBorderRadius = 5.0,
   double tfContentPadding = 10.0,
   Color tfColor = Colors.white54,
-  required tfLabelText,
-  required tfHintText,
-  required tfPrefixIcon,
-
+  required String tfLabelText,
+  required String tfHintText,
+  required Icon tfPrefixIcon,
+  required String? Function(String? value) tfValidator,
 }) =>
     Container(
       width: tfWidth,
-      child: TextField(
+      child: TextFormField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(tfContentPadding),
           border: OutlineInputBorder(
@@ -68,5 +70,6 @@ Widget textfield1({
           prefixIcon: tfPrefixIcon,
         ),
         controller: myController,
+        validator: tfValidator,
       ),
     );
