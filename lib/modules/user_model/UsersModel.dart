@@ -47,7 +47,7 @@ Widget buildUsersItem(UsersModel user) =>  Padding(
               foregroundImage: NetworkImage('${user.userImage}'),
               radius: 29.0,
             ),
-            Stack(
+            const Stack(
               alignment: AlignmentDirectional.center,
               children: [
                 CircleAvatar(
@@ -69,7 +69,7 @@ Widget buildUsersItem(UsersModel user) =>  Padding(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Container(
                 width: 200,
                 child: Text('${user.userName}', style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,),maxLines: 1, )),
@@ -83,19 +83,19 @@ Widget buildUsersItem(UsersModel user) =>  Padding(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 13,),
-            Row(
+            const SizedBox(height: 13,),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.notifications_off_rounded, size: 15,),
-                const SizedBox(width: 10,),
+                Icon(Icons.notifications_off_rounded, size: 15,),
+                SizedBox(width: 10,),
                 CircleAvatar(
                   radius: 6,
                   backgroundColor: Colors.green,
                 )
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Text('8:00 AM', style: TextStyle(color: Colors.grey[600]),),
           ],
         ),

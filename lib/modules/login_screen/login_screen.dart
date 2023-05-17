@@ -76,15 +76,13 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          Flexible(
-                            child: mainButton(
-                                buttonFunction: () {
-                                  if (formKey.currentState != null) {
-                                    formKey.currentState?.validate();
-                                  }
-                                },
-                                buttonText: 'LOGIN'),
-                          ),
+                          Flexible(child: mainButton(
+                              btnFunction: () {
+                            if (formKey.currentState != null) {
+                              formKey.currentState?.validate();
+                            }
+                          },
+                              buttonText: 'Login')),
                           const SizedBox(
                             height: 10,
                           ),

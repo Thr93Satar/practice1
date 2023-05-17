@@ -24,7 +24,7 @@ Widget btnText(
 // Buttons Section -------------------------------2
 
 Widget mainButton({
-  required Function buttonFunction,
+  required Function() btnFunction,
   required String buttonText,
   double buttonWidth = 200.0,
   double buttonHeight = 50.0,
@@ -39,7 +39,7 @@ Widget mainButton({
         color: buttonColor,
       ),
       child: MaterialButton(
-          onPressed: buttonFunction(),
+          onPressed: btnFunction,
           child: btnText(text: buttonText)),
     );
 
