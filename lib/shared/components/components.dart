@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 // Text Section ----------------------------------1
@@ -56,8 +58,12 @@ Widget textfield1({
   required String tfHintText,
   required Icon tfPrefixIcon,
   required String? Function(String? value) tfValidator,
+  Icon? tfSuffixIcon,
+  bool tfHiddenTxt = false,
+  Void? Function()? isPasswordVisible,
+  required TextInputType tfKeyboardType,
 }) =>
-    Container(
+    SizedBox(
       width: tfWidth,
       child: TextFormField(
         decoration: InputDecoration(
@@ -68,8 +74,11 @@ Widget textfield1({
           hintText: tfHintText,
           labelText: tfLabelText,
           prefixIcon: tfPrefixIcon,
+          suffixIcon: tfSuffixIcon != null ? IconButton(onPressed: isPasswordVisible, icon: tfSuffixIcon) : null,
         ),
         controller: myController,
         validator: tfValidator,
+        obscureText: tfHiddenTxt,
+        keyboardType: tfKeyboardType,
       ),
     );

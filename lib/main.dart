@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practiceflutter/modules/counter_screen/Counter_screen.dart';
+import 'package:practiceflutter/custom_bot_nav.dart';
 import 'package:practiceflutter/modules/login_screen/login_screen.dart';
-import 'package:practiceflutter/modules/user_screen/UsersScreen.dart';
-import 'package:practiceflutter/modules/messenger_page/messenger_page.dart';
-
+import 'package:practiceflutter/post_data.dart';
 import 'modules/bmi_screen/bmi_screen.dart';
 
 void main() {

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:practiceflutter/shared/components/components.dart';
+import 'package:practiceflutter/post_data.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key} ) : super(key: key,);
 
-  TextEditingController myController1 = TextEditingController();
-  TextEditingController myController2 = TextEditingController();
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController myController1 = TextEditingController();
+  final TextEditingController myController2 = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  bool isPasswordShow = true;
+
+  Widget vali = Text('please enter your password',style: TextStyle(fontSize: 10),);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,8 @@ class LoginScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: Stack(alignment: Alignment.topCenter, children: [
+              child: Stack(
+                  alignment: Alignment.topCenter, children: [
                 // Image.network(
                 //   'https://images.pexels.com/photos/16191049/pexels-photo-16191049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                 //   height: MediaQuery.of(context).size.height,
@@ -48,12 +57,12 @@ class LoginScreen extends StatelessWidget {
                               tfHintText: "Username",
                               tfPrefixIcon:
                                   const Icon(Icons.supervised_user_circle),
-                              tfValidator: (String? value) {
-                                if (value!.isEmpty) {
+                              tfValidator: (String? username) {
+                                if (username!.isEmpty) {
                                   return 'Please enter your password';
                                 }
                                 return null;
-                              },
+                              }, tfKeyboardType: TextInputType.emailAddress,
                             ),
                           ),
                           const SizedBox(
@@ -64,10 +73,18 @@ class LoginScreen extends StatelessWidget {
                               myController: myController2,
                               tfLabelText: 'Password',
                               tfHintText: "Password",
+                              tfKeyboardType: TextInputType.visiblePassword,
                               tfPrefixIcon: const Icon(Icons.lock),
-                              tfValidator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter your password';
+                              tfSuffixIcon: isPasswordShow ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                              tfHiddenTxt: isPasswordShow,
+                              isPasswordVisible: (){
+                                setState(() {
+                                  isPasswordShow = !isPasswordShow;
+                                });
+                              },
+                              tfValidator: (String? password) {
+                                if (password!.isEmpty) {
+                                  return vali.toStringDeep();
                                 }
                                 return null;
                               },
@@ -80,6 +97,10 @@ class LoginScreen extends StatelessWidget {
                               btnFunction: () {
                             if (formKey.currentState != null) {
                               formKey.currentState?.validate();
+                              postDataToBackend(myController1,myController2);
+                            }
+                            else{
+                              print('try again in few minutes');
                             }
                           },
                               buttonText: 'Login')),
@@ -99,7 +120,8 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 Flexible(
                                     child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                  },
                                   child: mainText(
                                       text: 'Register',
                                       fontSize: 13,
