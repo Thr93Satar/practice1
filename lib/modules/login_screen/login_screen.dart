@@ -1,9 +1,14 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:practiceflutter/configurations/size_config.dart';
+import 'package:practiceflutter/main.dart';
 import 'package:practiceflutter/shared/components/components.dart';
-import 'package:practiceflutter/post_data.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key} ) : super(key: key,);
+  LoginScreen({Key? key})
+      : super(
+          key: key,
+        );
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -13,159 +18,264 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController myController1 = TextEditingController();
   final TextEditingController myController2 = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  final GlobalKey _firstElementKey = GlobalKey();
   bool isPasswordShow = true;
-
-  Widget vali = Text('please enter your password',style: TextStyle(fontSize: 10),);
-
+  Widget vali = const Text(
+    'please enter your password',
+    style: TextStyle(fontSize: 10),
+  );
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'Welcome To Logino',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-        ),
-        body: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Stack(
-                  alignment: Alignment.topCenter, children: [
-                // Image.network(
-                //   'https://images.pexels.com/photos/16191049/pexels-photo-16191049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                //   height: MediaQuery.of(context).size.height,
-                //   width: MediaQuery.of(context).size.width,
-                //   fit: BoxFit.cover,
-                // ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Form(
-                      key: formKey,
+        backgroundColor: canvasColor.withOpacity(0.9),
+        body: SafeArea(
+          top: true,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: SizeConfig.screenHeight),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(
+                  decelerationRate: ScrollDecelerationRate.fast,
+                  parent: AlwaysScrollableScrollPhysics()),
+              padding: EdgeInsets.all(30),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 2,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 8,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Flexible(
-                            child: textfield1(
-                              myController: myController1,
-                              tfLabelText: 'Username',
-                              tfHintText: "Username",
-                              tfPrefixIcon:
-                                  const Icon(Icons.supervised_user_circle),
-                              tfValidator: (String? username) {
-                                if (username!.isEmpty) {
-                                  return 'Please enter your password';
-                                }
-                                return null;
-                              }, tfKeyboardType: TextInputType.emailAddress,
+                          Container(
+                            key: _firstElementKey,
+                            child: mainText(
+                              text: 'Hello Again!',
+                              fontColor: Colors.black,
+                              isUpperCase: false,
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Flexible(
-                            child: textfield1(
+                          secondText(
+                            text: 'you have been missed',
+                            fontColor: Colors.black,
+                            isUpperCase: false,
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 10,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 35,
+                      width: SizeConfig.blockSizeHorizontal * 100,
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textfield1(
+                              myController: myController1,
+                              tfLabelText: 'Username',
+                              tfHintText: 'Username',
+                              tfPrefixIcon: const Icon(Icons.person),
+                              tfValidator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return ('Username field must not be empty');
+                                }
+                              },
+                              tfKeyboardType: TextInputType.name,
+                            ),
+                            textfield1(
                               myController: myController2,
                               tfLabelText: 'Password',
                               tfHintText: "Password",
                               tfKeyboardType: TextInputType.visiblePassword,
                               tfPrefixIcon: const Icon(Icons.lock),
-                              tfSuffixIcon: isPasswordShow ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                              tfSuffixIcon: isPasswordShow
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off),
                               tfHiddenTxt: isPasswordShow,
-                              isPasswordVisible: (){
+                              isPasswordVisible: () {
                                 setState(() {
                                   isPasswordShow = !isPasswordShow;
                                 });
                               },
                               tfValidator: (String? password) {
                                 if (password!.isEmpty) {
-                                  return vali.toStringDeep();
+                                  return ('Password field must not be empty');
                                 }
                                 return null;
                               },
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Flexible(child: mainButton(
-                              btnFunction: () {
-                            if (formKey.currentState != null) {
-                              formKey.currentState?.validate();
-                              postDataToBackend(myController1,myController2);
-                            }
-                            else{
-                              print('try again in few minutes');
-                            }
-                          },
-                              buttonText: 'Login')),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Flexible(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Flexible(
-                                  child: mainText(
-                                      text: 'Don\'t have an account',
+                                SizedBox(
+                                  height: SizeConfig.blockSizeVertical * 3,
+                                  child: btnText(
+                                      text: 'Recover your password',
                                       fontColor: Colors.black,
-                                      isUpperCase: false,
-                                      fontSize: 12),
-                                ),
-                                Flexible(
-                                    child: TextButton(
-                                  onPressed: () {
-                                  },
-                                  child: mainText(
-                                      text: 'Register',
-                                      fontSize: 13,
-                                      fontColor: Colors.blue.shade900),
-                                )),
+                                      fontSize:
+                                          SizeConfig.blockSizeHorizontal * 3),
+                                )
                               ],
                             ),
+                            SizedBox(height: SizeConfig.blockSizeVertical * 1,),
+                            mainButton(
+                                btnFunction: () {
+                                  if (formKey.currentState != null) {
+                                    if (formKey.currentState!.validate()) {
+                                      print('hellllllllllllllllllo');
+                                    }
+                                  }
+                                },
+                                buttonText: 'Login',
+                                buttonColor: Colors.deepOrangeAccent),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 4,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 5,
+                      width: SizeConfig.blockSizeHorizontal * 100,
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              height: SizeConfig.blockSizeVertical * 0.2,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(colors: [
+                                Colors.white.withOpacity(0.1),
+                                Colors.black.withOpacity(0.6)
+                              ])),
+                            ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: SizedBox(
-                              height: MediaQuery.of(context).viewInsets.bottom,
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal * 2,
+                          ),
+                          Flexible(
+                            child: Container(
+                              color: canvasColor.withOpacity(0.0),
+                              child: Text(
+                                'Or continue with',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal * 2,
+                          ),
+                          Flexible(
+                            child: RotatedBox(
+                              quarterTurns: 90,
+                              child: Container(
+                                height: SizeConfig.blockSizeVertical * 0.2,
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(colors: [
+                                  Colors.white.withOpacity(0.1),
+                                  Colors.black.withOpacity(0.6)
+                                ])),
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: mainText(
-                          text: 'Please Login to your account',
-                          fontColor: Colors.black,
-                          isUpperCase: false,
-                        ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 4,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 10,
+                      width: SizeConfig.blockSizeHorizontal * 100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            height: SizeConfig.blockSizeVertical * 8,
+                            width: SizeConfig.blockSizeHorizontal * 16,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2, color: Colors.white),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.g_mobiledata,
+                                  size: SizeConfig.blockSizeHorizontal * 10,
+                                )),
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeVertical * 8,
+                            width: SizeConfig.blockSizeHorizontal * 16,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2, color: Colors.white),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.g_mobiledata,
+                                  size: SizeConfig.blockSizeHorizontal * 10,
+                                )),
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeVertical * 8,
+                            width: SizeConfig.blockSizeHorizontal * 16,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2, color: Colors.white),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.g_mobiledata,
+                                  size: SizeConfig.blockSizeHorizontal * 10,
+                                )),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 20,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 4,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.blockSizeVertical * 5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                            child: btnText(
+                                text: 'Dont have an account yet ?',
+                                fontColor: Colors.black,
+                                fontSize: SizeConfig.blockSizeHorizontal * 3),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal * 3,
+                          ),
+                          SizedBox(
+                              height: SizeConfig.blockSizeVertical * 3,
+                              child: btnText(
+                                  text: 'Register',
+                                  fontColor: Colors.deepOrange,
+                                  fontSize: SizeConfig.blockSizeHorizontal * 4))
+                        ],
                       ),
-                      Flexible(
-                          child: Icon(
-                        Icons.login_rounded,
-                        size: 50,
-                        color: Colors.blue,
-                      ))
-                    ],
-                  ),
-                ),
-              ]),
-            )));
+                    ),
+                  ]),
+            ),
+          ),
+        ));
   }
 }

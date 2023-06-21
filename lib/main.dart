@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practiceflutter/custom_bot_nav.dart';
 import 'package:practiceflutter/modules/login_screen/login_screen.dart';
-import 'package:practiceflutter/post_data.dart';
+import 'package:practiceflutter/modules/login_screen/rubish.dart';
 import 'modules/bmi_screen/bmi_screen.dart';
 
 void main() {
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        canvasColor: Colors.red
       ),
       home: LoginScreen(),
     );
@@ -31,18 +32,18 @@ class MyApp extends StatelessWidget {
 // -------------------------------------Color Swatch----------------------------
 
 Map<int, Color> color = {
-  50: const Color.fromRGBO(50, 61, 103, .1),
-  100: const Color.fromRGBO(50, 61, 103, .2),
-  200: const Color.fromRGBO(50, 61, 103, .3),
-  300: const Color.fromRGBO(50, 61, 103, .4),
-  400: const Color.fromRGBO(50, 61, 103, .5),
-  500: const Color.fromRGBO(50, 61, 103, .6),
-  600: const Color.fromRGBO(50, 61, 103, .7),
-  700: const Color.fromRGBO(50, 61, 103, .8),
-  800: const Color.fromRGBO(50, 61, 103, .9),
-  900: const Color.fromRGBO(50, 61, 103, 1),
+  50: const Color.fromRGBO(255, 255, 255, .1),
+  100: const Color.fromRGBO(255, 255, 255, .2),
+  200: const Color.fromRGBO(255, 255, 255, .3),
+  300: const Color.fromRGBO(255, 255, 255, .4),
+  400: const Color.fromRGBO(255, 255, 255, .5),
+  500: const Color.fromRGBO(255, 255, 255, .6),
+  600: const Color.fromRGBO(255, 255, 255, .7),
+  700: const Color.fromRGBO(255, 255, 255, .8),
+  800: const Color.fromRGBO(255, 255, 255, .9),
+  900: const Color.fromRGBO(255, 255, 255, 1),
 };
-MaterialColor bodycolor = MaterialColor(0xFF0f0f38, color);
+MaterialColor canvasColor = MaterialColor(0xFFffffff, color);
 
 Map<int, Color> color1 = {
   50: const Color.fromRGBO(70, 90, 170, .1),
