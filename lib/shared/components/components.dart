@@ -99,19 +99,32 @@ Widget textfield1({
       height: SizeConfig.blockSizeVertical * 10,
       width: SizeConfig.blockSizeHorizontal * 100,
       child: TextFormField(
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: tfColor,
-          contentPadding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeHorizontal * 6),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(SizeConfig.blockSizeHorizontal * 2),),
-          hintText: tfHintText,
-          labelText: tfLabelText,
-          prefixIcon: tfPrefixIcon,
-          suffixIcon: tfSuffixIcon != null ? IconButton(onPressed: isPasswordVisible, icon: tfSuffixIcon) : null,
-        ),
         controller: myController,
         validator: tfValidator,
         obscureText: tfHiddenTxt,
         keyboardType: tfKeyboardType,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeHorizontal * 6),
+          hintText: tfHintText,
+          prefixIcon: tfPrefixIcon,
+          suffixIcon: tfSuffixIcon != null ? IconButton(onPressed: isPasswordVisible, icon: tfSuffixIcon,color: Colors.deepOrangeAccent,) : null,
+          //----------------------------------BorderStyle-----------------------------//
+          border: InputBorder.none,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Colors.white),borderRadius: BorderRadius.circular(15.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Colors.white),borderRadius: BorderRadius.circular(15.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Colors.white),borderRadius: BorderRadius.circular(15.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Colors.white),borderRadius: BorderRadius.circular(15.0),
+          ),
+          //----------------------------------BorderStyle-----------------------------//
+        ),
       ),
     );

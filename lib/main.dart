@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practiceflutter/custom_bot_nav.dart';
+import 'package:practiceflutter/layout/homelayout.dart';
 import 'package:practiceflutter/modules/login_screen/login_screen.dart';
 import 'package:practiceflutter/modules/login_screen/rubish.dart';
 import 'modules/bmi_screen/bmi_screen.dart';
@@ -15,9 +16,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        canvasColor: Colors.red
+          primaryColor: Colors.deepOrangeAccent, // Set your desired primary color
+          hintColor: Colors.deepOrangeAccent,
+          primaryIconTheme: const IconThemeData(
+            color: Colors.deepOrangeAccent, // Set your desired icon color
+          ),// Set your desired accent color
+        canvasColor: canvasColor,
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
@@ -46,18 +52,18 @@ Map<int, Color> color = {
 MaterialColor canvasColor = MaterialColor(0xFFffffff, color);
 
 Map<int, Color> color1 = {
-  50: const Color.fromRGBO(70, 90, 170, .1),
-  100: const Color.fromRGBO(70, 90, 170, .2),
-  200: const Color.fromRGBO(70, 90, 170, .3),
-  300: const Color.fromRGBO(70, 90, 170, .4),
-  400: const Color.fromRGBO(70, 90, 170, .5),
-  500: const Color.fromRGBO(70, 90, 170, .6),
-  600: const Color.fromRGBO(70, 90, 170, .7),
-  700: const Color.fromRGBO(70, 90, 170, .8),
-  800: const Color.fromRGBO(70, 90, 170, .9),
-  900: const Color.fromRGBO(70, 90, 170, 1),
+  50: const Color.fromRGBO(255, 128, 0, .1),
+  100: const Color.fromRGBO(255, 128, 0, .2),
+  200: const Color.fromRGBO(255, 128, 0, .3),
+  300: const Color.fromRGBO(255, 128, 0, .4),
+  400: const Color.fromRGBO(255, 128, 0, .5),
+  500: const Color.fromRGBO(255, 128, 0, .6),
+  600: const Color.fromRGBO(255, 128, 0, .7),
+  700: const Color.fromRGBO(255, 128, 0, .8),
+  800: const Color.fromRGBO(255, 128, 0, .9),
+  900: const Color.fromRGBO(255, 128, 0, 1),
 };
-MaterialColor themecolor = MaterialColor(0xFF303062, color1);
+MaterialColor themecolor = MaterialColor(0xFFff800, color1);
 
 Map<int, Color> color2 = {
   50: const Color.fromRGBO(5, 206, 230, .1),

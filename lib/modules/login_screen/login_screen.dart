@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-        backgroundColor: canvasColor.withOpacity(0.9),
+        backgroundColor: canvasColor.withOpacity(0.92),
         body: SafeArea(
           top: true,
           child: ConstrainedBox(
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               physics: const BouncingScrollPhysics(
                   decelerationRate: ScrollDecelerationRate.fast,
                   parent: AlwaysScrollableScrollPhysics()),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               myController: myController1,
                               tfLabelText: 'Username',
                               tfHintText: 'Username',
-                              tfPrefixIcon: const Icon(Icons.person),
+                              tfPrefixIcon: const Icon(Icons.person,color: Colors.deepOrangeAccent,),
                               tfValidator: (String? value) {
                                 if (value!.isEmpty) {
                                   return ('Username field must not be empty');
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               tfLabelText: 'Password',
                               tfHintText: "Password",
                               tfKeyboardType: TextInputType.visiblePassword,
-                              tfPrefixIcon: const Icon(Icons.lock),
+                              tfPrefixIcon: const Icon(Icons.lock,color: Colors.deepOrangeAccent),
                               tfSuffixIcon: isPasswordShow
                                   ? Icon(Icons.visibility)
                                   : Icon(Icons.visibility_off),
